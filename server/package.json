@@ -1,6 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
+  "type": "module",
   "main": "src/server.ts",
   "scripts": {
     "start": "ts-node-dev --respawn --transpile-only src/server.ts",
@@ -22,7 +23,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
-    "http-status": "^2.0.0",
+    "http-status": "1.5.0",
     "mongoose": "^8.9.2",
     "ts-node": "^10.9.2",
     "winston": "^3.17.0",
@@ -32,6 +33,7 @@
     "@eslint/js": "^9.17.0",
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
+    "@types/http-status": "^1.1.2",
     "@types/node": "^22.10.2",
     "@typescript-eslint/eslint-plugin": "^8.18.2",
     "@typescript-eslint/parser": "^8.18.2",

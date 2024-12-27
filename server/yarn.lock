@@ -239,6 +239,13 @@
   resolved "https://registry.yarnpkg.com/@types/http-errors/-/http-errors-2.0.4.tgz#7eb47726c391b7345a6ec35ad7f4de469cf5ba4f"
   integrity sha512-D0CFMMtydbJAegzOyHjtiKPLlvnm3iTZyZRSZoLq2mRhDdmLfIWOCYPfQJ4cu2erKghU++QvjcUjp/5h7hESpA==
 
+"@types/http-status@^1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@types/http-status/-/http-status-1.1.2.tgz#1f4d34e2df526b62f23db98e93c862603fcef22a"
+  integrity sha512-GodZPvF3xPVglUx4q7s0plKu1cdW0mMLADpWi5PMMx3n/2xGB6GoKqQxQxp6A5xuARtZpQ9/6p3WDFwCpPaN8A==
+  dependencies:
+    http-status "*"
+
 "@types/json-schema@^7.0.15":
   version "7.0.15"
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.15.tgz#596a1747233694d50f6ad8a7869fcb6f56cf5841"
@@ -1539,10 +1546,15 @@ http-errors@2.0.0:
     statuses "2.0.1"
     toidentifier "1.0.1"
 
-http-status@^2.0.0:
+http-status@*:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/http-status/-/http-status-2.0.0.tgz#083f4606f42aea2881405656093f2290372aae21"
   integrity sha512-fmtDiMjseYigum9OwVYJD2RD6tRYV4tzRrT92/aLSOS2bNPvz3jx8aHFqJ4Nq4ZLydalwuyh2Q6VuHg7qbCbJQ==
+
+http-status@1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/http-status/-/http-status-1.5.0.tgz#2edfb02068d236ba60fd1481ad89219aa96e1677"
+  integrity sha512-wcGvY31MpFNHIkUcXHHnvrE4IKYlpvitJw5P/1u892gMBAM46muQ+RH7UN1d+Ntnfx5apnOnVY6vcLmrWHOLwg==
 
 iconv-lite@0.4.24, iconv-lite@^0.4.24:
   version "0.4.24"
