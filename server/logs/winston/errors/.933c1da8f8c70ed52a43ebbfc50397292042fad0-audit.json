@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "D:\\_my_portfolio_\\Full Stack\\MERN\\4. Expense Tracker\\jikmunn-expense-tracker\\server\\logs\\winston\\errors\\.933c1da8f8c70ed52a43ebbfc50397292042fad0-audit.json",
+    "files": [
+        {
+            "date": 1735358415781,
+            "name": "D:\\_my_portfolio_\\Full Stack\\MERN\\4. Expense Tracker\\jikmunn-expense-tracker\\server\\logs\\winston\\errors\\jikmunn-expense-tracker-2024-28-12-10-error.log",
+            "hash": "34c6b19bde6f716666c04e6bba8cb6b9cc4c6e51b7db05c37670a0bb9f5140f9"
+        }
+    ],
+    "hashType": "sha256"
+}

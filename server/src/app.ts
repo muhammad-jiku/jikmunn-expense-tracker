@@ -1,7 +1,7 @@
 import cors from 'cors';
 import express, { Application, NextFunction, Request, Response } from 'express';
 import httpStatus from 'http-status';
-import { globalErrorHandler } from './app/middlewares/globalErrorHandler.js';
+import { globalErrorHandler } from './app/middlewares/globalErrorHandler';
 
 // app init
 const app: Application = express();
