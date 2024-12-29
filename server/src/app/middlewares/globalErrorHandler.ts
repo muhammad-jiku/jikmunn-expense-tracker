@@ -4,7 +4,7 @@ import ApiError from '../../errors/ApiError';
 import { handleCastError } from '../../errors/handleCastError';
 import { handleValidationError } from '../../errors/handleValidationError';
 import { IGenericErrorMessage } from '../../interfaces/error';
-import { errorlogger } from '../../shared/logger';
+// import { errorlogger } from '../../shared/logger';
 
 export const globalErrorHandler: ErrorRequestHandler = (
   err,
@@ -14,7 +14,8 @@ export const globalErrorHandler: ErrorRequestHandler = (
 ) => {
   config?.env === 'development'
     ? console.log('Global development error handler:', { err })
-    : errorlogger.error('Global production error handler:', err);
+    : console.error('Global production error handler:', err);
+  // : errorlogger.error('Global production error handler:', err);
 
   let statusCode = 500;
   let message = 'Something went wrong!';

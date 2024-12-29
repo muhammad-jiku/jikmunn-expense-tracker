@@ -8,11 +8,12 @@ const config_1 = __importDefault(require("../../config"));
 const ApiError_1 = __importDefault(require("../../errors/ApiError"));
 const handleCastError_1 = require("../../errors/handleCastError");
 const handleValidationError_1 = require("../../errors/handleValidationError");
-const logger_1 = require("../../shared/logger");
+// import { errorlogger } from '../../shared/logger';
 const globalErrorHandler = (err, req, res, next) => {
     (config_1.default === null || config_1.default === void 0 ? void 0 : config_1.default.env) === 'development'
         ? console.log('Global development error handler:', { err })
-        : logger_1.errorlogger.error('Global production error handler:', err);
+        : console.error('Global production error handler:', err);
+    // : errorlogger.error('Global production error handler:', err);
     let statusCode = 500;
     let message = 'Something went wrong!';
     let errorMessages = [];
