@@ -14,7 +14,7 @@ const FormComponent: React.FC = () => {
     const transactionData: IFormInputs = {
       name: data.name,
       type: data.type,
-      amount: parseFloat(data.amount), // Assuming amount is a string and needs conversion to a number
+      amount: data.amount, // Assuming amount is a string and needs conversion to a number
     };
 
     try {
