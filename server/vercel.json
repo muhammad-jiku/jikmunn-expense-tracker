@@ -2,17 +2,19 @@
   "version": 2,
   "builds": [
     {
-      "src": "server/src/server.ts",
-      "use": "@vercel/node",
-      "config": {
-        "maxDuration": 10
-      }
+      "src": "*.ts",
+      "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/server/src/server.ts"
+      "methods": ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+      "headers": {
+        "Access-Control-Allow-Headers": "Content-Type",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, PATCH, DELETE, OPTIONS"
+      },
+      "dest": "/"
     }
   ]
 }
