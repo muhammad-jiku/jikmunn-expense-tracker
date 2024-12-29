@@ -5,10 +5,7 @@ import {
   ITransaction,
 } from '../_interfaces';
 
-// const baseURI = 'http://localhost:8080';
 const baseURI = import.meta.env.VITE_BASE_URI;
-
-console.log('base uri', baseURI);
 
 export const apiSlice = createApi({
   reducerPath: 'api',

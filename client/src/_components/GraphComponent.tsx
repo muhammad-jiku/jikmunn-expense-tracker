@@ -11,8 +11,6 @@ const GraphComponent: React.FC = () => {
   const { data, isFetching, isSuccess, isError } = useGetLabelsQuery();
   let graphData: JSX.Element | null;
 
-  console.log('ListComponent data:', data); // Log to check what `data` is
-
   if (isFetching) {
     graphData = <div>Fetching</div>;
   } else if (isSuccess && data) {

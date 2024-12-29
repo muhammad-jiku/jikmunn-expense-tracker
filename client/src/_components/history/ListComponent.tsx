@@ -5,26 +5,9 @@ import {
 } from '../../_store/apiSlice';
 import TransactionComponent from './TransactionComponent';
 
-// const obj = [
-//   {
-//     name: 'Savings',
-//     color: '#f9c74f',
-//   },
-//   {
-//     name: 'Investment',
-//     color: '#f9c74f',
-//   },
-//   {
-//     name: 'Expense',
-//     color: 'rgb(54, 162, 235)',
-//   },
-// ];
-
 function ListComponent() {
   const { data, isFetching, isSuccess, isError } = useGetLabelsQuery();
   const [deleteTransaction] = useDeleteTransactionMutation();
-
-  console.log('label data', data);
 
   let Transactions: React.ReactNode;
 

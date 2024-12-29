@@ -57,7 +57,6 @@ export function getLabels(transaction: ITransaction[]): ILabel[] {
 
 // Function to generate chart data based on ITransactionResponse
 export function chartData(transaction: ITransactionResponse, custom?: object) {
-  console.log('Transaction data:', transaction); // Log to check what `transaction` is
   const bg = _.uniq(transaction.data.map((t: ILabel) => t.color)); // Ensure transaction.data is used
 
   const sum = getSum(transaction.data as ILabel[], 'type');
