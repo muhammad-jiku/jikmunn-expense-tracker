@@ -1,17 +1,30 @@
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { IFormInputs } from '../_interfaces';
+import { useAddTransactionMutation } from '../_store/apiSlice';
 import ListComponent from './history/ListComponent';
 
-type FormData = {
-  name: string;
-  type: string;
-  amount: string;
-};
+const FormComponent: React.FC = () => {
+  const { register, handleSubmit, resetField } = useForm<IFormInputs>();
+  const [addTransaction] = useAddTransactionMutation();
 
-function FormComponent() {
-  const { register, handleSubmit } = useForm<FormData>();
+  // Submit handler to handle form submission
+  const onSubmit: SubmitHandler<IFormInputs> = async (data) => {
+    if (!data) return;
 
-  const onSubmit = (data: FormData) => {
-    console.log(data);
+    const transactionData: IFormInputs = {
+      name: data.name,
+      type: data.type,
+      amount: parseFloat(data.amount), // Assuming amount is a string and needs conversion to a number
+    };
+
+    try {
+      // Add the transaction and reset form fields
+      await addTransaction(transactionData).unwrap();
+      resetField('name');
+      resetField('amount');
+    } catch (error) {
+      console.error('Failed to add transaction:', error);
+    }
   };
 
   return (
@@ -28,15 +41,13 @@ function FormComponent() {
               className='form-input'
             />
           </div>
-          <select
-            className='form-input'
-            {...register('type')}
-            defaultValue='Investment'
-          >
-            <option value='Investment'>Investment</option>
+
+          <select className='form-input' {...register('type')}>
+            <option defaultValue='Investment'>Investment</option>
             <option value='Expense'>Expense</option>
             <option value='Savings'>Savings</option>
           </select>
+
           <div className='input-group'>
             <input
               type='text'
@@ -45,6 +56,7 @@ function FormComponent() {
               className='form-input'
             />
           </div>
+
           <div className='submit-btn'>
             <button className='border py-2 text-white bg-indigo-500 w-full'>
               Make Transaction
@@ -52,9 +64,10 @@ function FormComponent() {
           </div>
         </div>
       </form>
+
       <ListComponent />
     </div>
   );
-}
+};
 
 export default FormComponent;

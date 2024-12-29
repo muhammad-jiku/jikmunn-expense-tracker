@@ -45,7 +45,7 @@ const getAllTransactions = catchAsync(
 const deleteTransaction = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const { id } = await req.body;
+      const { id } = await req.params;
       const result = await TransactionServices.deleteTransaction(id);
 
       sendResponse<ITransaction>(res, {

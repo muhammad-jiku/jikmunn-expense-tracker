@@ -1,49 +1,56 @@
-import { ArcElement, Chart } from 'chart.js';
+import { ArcElement, Chart, ChartData, ChartOptions } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
+import { chartData, getTotal } from '../_helpers';
+import { ILabel, ITransactionResponse } from '../_interfaces';
+import { useGetLabelsQuery } from '../_store/apiSlice';
 import Labels from './label/Labels';
 
 Chart.register(ArcElement);
 
-const config = {
-  data: {
-    datasets: [
-      {
-        data: [300, 50, 100],
-        backgroundColor: [
-          'rgb(255, 99, 132)',
-          'rgb(54, 162, 235)',
-          'rgb(255, 205, 86)',
-        ],
-        hoverOffset: 4,
-        borderRadius: 30,
-        spacing: 10,
-      },
-    ],
-  },
-  options: {
-    cutout: 115,
-  },
-};
+const GraphComponent: React.FC = () => {
+  const { data, isFetching, isSuccess, isError } = useGetLabelsQuery();
+  let graphData: JSX.Element | null;
 
-function GraphComponent() {
+  console.log('ListComponent data:', data); // Log to check what `data` is
+
+  if (isFetching) {
+    graphData = <div>Fetching</div>;
+  } else if (isSuccess && data) {
+    // Explicitly type the chart configuration returned by `chartData`
+    const chartConfig = chartData(data as ITransactionResponse) as {
+      data: ChartData<'doughnut'>;
+      options: ChartOptions<'doughnut'>;
+    };
+
+    graphData = (
+      <Doughnut data={chartConfig.data} options={chartConfig.options} />
+      // <Doughnut {...chartData(data as ITransactionResponse)} />
+    );
+  } else if (isError) {
+    graphData = <div>Error</div>;
+  } else {
+    graphData = null;
+  }
+
   return (
     <div className='flex justify-content max-w-xs mx-auto'>
       <div className='item'>
         <div className='chart relative'>
-          <Doughnut {...config} />
+          {graphData}
           <h3 className='mb-4 font-bold title'>
             Total
-            <span className='block text-3xl text-emerald-400'>${0}</span>
+            <span className='block text-3xl text-emerald-400'>
+              ${data ? Math.round(getTotal(data?.data as ILabel[])) : 0}
+            </span>
           </h3>
         </div>
 
         <div className='flex flex-col py-10 gap-4'>
-          {/* Labels */}
           <Labels />
         </div>
       </div>
     </div>
   );
-}
+};
 
 export default GraphComponent;

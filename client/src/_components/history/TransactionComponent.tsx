@@ -1,26 +1,29 @@
 import 'boxicons/css/boxicons.min.css';
+import React from 'react';
+import { ILabel } from '../../_interfaces';
 
-type CatergoryData = {
-  name: string;
-  color: string;
-};
+interface TransactionComponentProps {
+  category: ILabel; // Category follows the ILabel interface
+  handler: (e: React.MouseEvent<HTMLButtonElement>) => void; // Event handler for delete button
+}
 
-function TransactionComponent({ category }: { category: CatergoryData }) {
-  if (!category) return <></>;
+const TransactionComponent: React.FC<TransactionComponentProps> = ({
+  category,
+  handler,
+}) => {
+  if (!category) return null;
 
   return (
     <div
       className='item flex justify-center bg-gray-50 py-2 rounded-r'
       style={{ borderRight: `8px solid ${category.color ?? '#e5e5e5'}` }}
     >
-      {/* <button className='px-3' aria-label={`Delete ${category.name}`}>
-        <box-icon
-          color={category.color ?? '#e5e5e5'}
-          size='15px'
-          name='trash'
-        ></box-icon>
-      </button> */}
-      <button className='px-3' aria-label={`Delete ${category.name}`}>
+      <button
+        className='px-3'
+        aria-label={`Delete ${category.name}`}
+        onClick={handler}
+        data-id={category._id} // Attach the id to the button's dataset
+      >
         <span
           className='bx bx-trash'
           style={{ color: category.color ?? '#e5e5e5', fontSize: '15px' }}
@@ -29,6 +32,6 @@ function TransactionComponent({ category }: { category: CatergoryData }) {
       <span className='block w-full'>{category.name ?? ''}</span>
     </div>
   );
-}
+};
 
 export default TransactionComponent;

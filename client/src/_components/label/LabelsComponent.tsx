@@ -1,10 +1,10 @@
-type LabelData = {
-  type: string;
-  color: string;
-  percent: number;
-};
+import { ILabel } from '../../_interfaces';
 
-export function LabelsComponent({ data }: { data: LabelData }) {
+interface ILabelsComponentProps {
+  data: ILabel;
+}
+
+const LabelsComponent: React.FC<ILabelsComponentProps> = ({ data }) => {
   if (!data) return <></>;
 
   return (
@@ -16,7 +16,9 @@ export function LabelsComponent({ data }: { data: LabelData }) {
         ></div>
         <h3 className='text-md'>{data.type ?? ''}</h3>
       </div>
-      <h3 className='font-bold'>{data.percent ?? 0}%</h3>
+      <h3 className='font-bold'>{Math.round(data.percent as number) ?? 0}%</h3>
     </div>
   );
-}
+};
+
+export default LabelsComponent;
